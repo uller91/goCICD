@@ -1,15 +1,15 @@
 package auth
 
 import (
-	"testing"
 	"net/http"
+	"testing"
 )
 
 func TestGetApiKet(t *testing.T) {
 	req, _ := http.NewRequest("GET", "", nil)
 	token := "Bearer hopuga"
 	req.Header.Set("Authorization", token)
-	
+
 	req2, _ := http.NewRequest("GET", "", nil)
 
 	req3, _ := http.NewRequest("GET", "", nil)
@@ -18,27 +18,27 @@ func TestGetApiKet(t *testing.T) {
 
 	tests := []struct {
 		name    string
-		token 	string
+		token   string
 		header  http.Header
 		wantErr bool
 	}{
 		{
-			name:     "Wrong header token",
-			token: 		"hopuga",
-			header:     req.Header,
-			wantErr:  	true,
+			name:    "Wrong header token",
+			token:   "hopuga",
+			header:  req.Header,
+			wantErr: true,
 		},
 		{
-			name:     "No header",
-			token: 		"",
-			header:     req2.Header,
-			wantErr:  	true,
+			name:    "No header",
+			token:   "",
+			header:  req2.Header,
+			wantErr: true,
 		},
 		{
-			name:     "Correct header",
-			token: 		"bruh",
-			header:     req3.Header,
-			wantErr:  	false,
+			name:    "Correct header",
+			token:   "bruh",
+			header:  req3.Header,
+			wantErr: false,
 		},
 	}
 
